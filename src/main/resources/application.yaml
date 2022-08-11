@@ -30,7 +30,12 @@ spring:
       enabled: false
   sql:
     init:
-      mode: always
+      mode:  always
+  data:
+    rest:
+      base-path: /api
+      detection-strategy: annotated
+
 
 ---
 
