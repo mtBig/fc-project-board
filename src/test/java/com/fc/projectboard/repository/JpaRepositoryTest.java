@@ -39,6 +39,52 @@ class JpaRepositoryTest {
         List<Article> articles = articleRepository.findAll();
 
         // then
-        assertThat(articles).isNotNull().hasSize(0);
+        assertThat(articles).isNotNull().hasSize(1000);
+    }
+
+    @DisplayName("insert 테스트")
+    @Test
+    void givenTestData_whenInserting_thenWorksFine() {
+        // given
+        long previousCount = articleRepository.count();
+
+        // when
+        Article savedArticle = articleRepository.save(Article.of("new article", "new content", "#spring"));
+
+        // then
+        assertThat(articleRepository.count()).isEqualTo(previousCount +1);
+    }
+
+    @DisplayName("update 테스트")
+    @Test
+    void givenTestData_whenUpdating_thenWorksFine() {
+        // given
+        Article article = articleRepository.findById(1L).orElseThrow();
+        String updatedHashtag = "#springboot";
+
+        article.setHashtag(updatedHashtag);
+
+        // when
+        Article savedArticle = articleRepository.saveAndFlush(article);
+
+        // then
+        assertThat(savedArticle).hasFieldOrPropertyWithValue("hashtag", updatedHashtag);
+    }
+
+    @DisplayName("delete 테스트")
+    @Test
+    void givenTestData_whenDeleting_thenWorksFine() {
+        // given
+        Article article = articleRepository.findById(1L).orElseThrow();
+        long prevCount = articleRepository.count();
+        long prevCommentCount = articleCommentRepository.count();
+        int deletedCommentSize = article.getArticleComments().size();
+
+        // when
+        articleRepository.delete(article);
+
+        // then
+        assertThat(articleRepository.count()).isEqualTo(prevCount -1);
+        assertThat(articleCommentRepository.count()).isEqualTo(prevCommentCount - deletedCommentSize);
     }
 }
