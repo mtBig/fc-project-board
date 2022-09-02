@@ -1,3 +1,8 @@
+-- 테스트 계정
+insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values ('uno', '{noop}asdf1234', 'Uno', 'uno@mail.com', 'I am Uno', now(), 'uno', now(), 'uno');
+insert into user_account (user_id, user_password, nickname, email, memo, created_at, created_by, modified_at, modified_by) values ('uno2', '{noop}asdf1234', 'Uno2', 'uno2@mail.com', 'I am Uno2', now(), 'uno2', now(), 'uno2');
+
+-- 게시글
 insert into article (title, content, hashtag, created_by, created_at, modified_by, modified_at) values ('Horrorvision', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 'Yellow', 'Currie', '2021-10-29 16:01:34', 'Clementius', '2022-01-10 08:47:39');
 insert into article (title, content, hashtag, created_by, created_at, modified_by, modified_at) values ('For All Mankind', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl.', null, 'Jenelle', '2021-05-18 03:04:44', 'Westley', '2021-03-01 00:36:36');
 insert into article (title, content, hashtag, created_by, created_at, modified_by, modified_at) values ('Miserables, Les', 'Duis at velit eu est congue elementum.', null, 'Beth', '2021-08-23 20:37:03', 'Laure', '2021-12-17 10:11:36');
